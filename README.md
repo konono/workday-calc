@@ -6,6 +6,8 @@
 
 インストール方法
 ```
+pip3 install workday-calc
+or
 pip3 install git+https://github.com/konono/workday-calc
 ```
 
