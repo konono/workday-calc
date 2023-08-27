@@ -1,6 +1,8 @@
 # workday-calc
 ## 概要
-土日、日本の祝日を加味してworking dayを計算してくれるツールです。
+土日、日本の祝日を加味して**working day**を計算してくれるツールです。
+
+細かい話ではありますが、workking dayつまりは稼働日という考え方なので、開始日: 2023/8/27、終了日: 2023/8/27と入力した場合は1daysと返ってくる仕様になっています。
 
 産休申請をする際に期間の他にworkdayも必要と言われたので、ツールを探したのですがパッと見つからなかったので作りました。
 
@@ -20,8 +22,7 @@ dateの入力については以下のフォーマットが許容されていま�
 
 YYYY-MM-DD, YYYY-M-DD, YYYY-M-D, YYYY/MM/DD, YYYY/M/DD,YYYY/M/D, YYYY.MM.DD, YYYY.M.DD, YYYY.M.D, YYYYMMDD
 
-
---without_workday(-w): **土日、祝日を加味しない日数**を計算します。
+--without_workday(-w): **土日、祝日を加味しない開始日を含む、開始日から終了日までの日数**を計算します。
 
 --debug: 与えられた期間にある祝日を表示します
 
@@ -61,7 +62,7 @@ workdays: 70 days
 ❯ workday-calc -s 2023/10/18 -e 2024/01/31 -w
 start_date: 2023/10/18
 end_date: 2024/01/31
-days: 105 days
+days: 106 days
 
 ❯ workday-calc -s 2023/10/18 -e 2024/01/31 --debug
 start_date: 2023/10/18
@@ -72,9 +73,4 @@ holidays:
 (datetime.date(2023, 11, 23), '勤労感謝の日')
 (datetime.date(2024, 1, 1), '元日')
 (datetime.date(2024, 1, 8), '成人の日')
-
-❯ python3 cli.py -s 2023/10/18 -e 2024/01/31
-start_date: 2023/10/18
-end_date: 2024/01/31
-workdays: 72 days
 ```

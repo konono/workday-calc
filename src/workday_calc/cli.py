@@ -34,7 +34,7 @@ def workdays_calc(args):
     print(f'start_date: {start_date.format("YYYY/MM/DD")}')
     print(f'end_date: {end_date.format("YYYY/MM/DD")}')
     if args.without_workday:
-        print(f'days: {(end_date - start_date).days} days')
+        print(f'days: {(end_date - start_date).days + 1} days')
     else:
         jphd = jpholiday.between(start_date.datetime, end_date.datetime)
         holidays = [arrow.get(d[0].strftime("%Y/%m/%d")) for d in jphd]
