@@ -6,8 +6,6 @@
 
 インストール方法
 ```
-pip3 install workday-calc
-or
 pip3 install git+https://github.com/konono/workday-calc
 ```
 
@@ -16,7 +14,10 @@ pip3 install git+https://github.com/konono/workday-calc
 
 --end(-e): 終了日時を入力します
 
+--holidays: 日本の祝日以外の祝日(E.g. company holidayなど)を入力します。スペース区切りでdateフォーマットを入力してください。
+
 dateの入力については以下のフォーマットが許容されています:
+
 YYYY-MM-DD, YYYY-M-DD, YYYY-M-D, YYYY/MM/DD, YYYY/M/DD,YYYY/M/D, YYYY.MM.DD, YYYY.M.DD, YYYY.M.D, YYYYMMDD
 
 
@@ -25,7 +26,7 @@ YYYY-MM-DD, YYYY-M-DD, YYYY-M-D, YYYY/MM/DD, YYYY/M/DD,YYYY/M/D, YYYY.MM.DD, YYY
 --debug: 与えられた期間にある祝日を表示します
 
 ```
-❯ workday-calc --help
+❯ python3 cli.py --help
 usage: python3 cli.py -s <date> -e <date> [option]
 Available date formats is following:
 YYYY-MM-DD, YYYY-M-DD, YYYY-M-D, YYYY/MM/DD, YYYY/M/DD,YYYY/M/D, YYYY.MM.DD, YYYY.M.DD, YYYY.M.D, YYYYMMDD
@@ -40,6 +41,8 @@ options:
 date:
   --start START_DATE, -s START_DATE
   --end END_DATE, -e END_DATE
+  --holidays [HOLIDAYS ...]
+                        A list of date format, space delimiter
 ```
 
 ## 使用例
@@ -49,6 +52,11 @@ date:
 start_date: 2023/10/18
 end_date: 2024/01/31
 workdays: 72 days
+
+❯ python3 cli.py -s 2023/10/18 -e 2024/01/31 --holidays 2024/1/2 2024/1/3
+start_date: 2023/10/18
+end_date: 2024/01/31
+workdays: 70 days
 
 ❯ workday-calc -s 2023/10/18 -e 2024/01/31 -w
 start_date: 2023/10/18
@@ -64,4 +72,9 @@ holidays:
 (datetime.date(2023, 11, 23), '勤労感謝の日')
 (datetime.date(2024, 1, 1), '元日')
 (datetime.date(2024, 1, 8), '成人の日')
+
+❯ python3 cli.py -s 2023/10/18 -e 2024/01/31
+start_date: 2023/10/18
+end_date: 2024/01/31
+workdays: 72 days
 ```
