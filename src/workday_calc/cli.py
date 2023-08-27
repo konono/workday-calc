@@ -12,12 +12,13 @@ def parser():
              'YYYY-MM-DD, YYYY-M-DD, YYYY-M-D, YYYY/MM/DD, YYYY/M/DD,'
              'YYYY/M/D, YYYY.MM.DD, YYYY.M.DD, YYYY.M.D, YYYYMMDD')
     argparser = ArgumentParser(usage=usage)
-
     date_group = argparser.add_argument_group("date")
     date_group.add_argument('--start', '-s', type=str,
                             dest='start_date', required=True)
     date_group.add_argument('--end', '-e', type=str,
                             dest='end_date', required=True)
+    date_group.add_argument('--holidays', nargs="*", type=str, default=False, required=False,
+                            help='A list of date format, space delimiter')
     argparser.add_argument('--without_workday', '-w', action='store_true', required=False,
                            help='To calculate the number of days without considering working days,\
                                  specify the WITHOUT_WORKDAY option.')
@@ -37,6 +38,9 @@ def workdays_calc(args):
     else:
         jphd = jpholiday.between(start_date.datetime, end_date.datetime)
         holidays = [arrow.get(d[0].strftime("%Y/%m/%d")) for d in jphd]
+        if args.holidays:
+            arg_holiday = [arrow.get(holiday) for holiday in args.holidays]
+            holidays = holidays + arg_holiday
         # convert datetime.date to arrow -> arrow.get(d[0].strftime("%Y/%m/%d")
         print(f'workdays: '
               f'{(workdays.networkdays((start_date), arrow.get(end_date), holidays=holidays))} days')
