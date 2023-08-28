@@ -8,7 +8,7 @@
 
 インストール方法
 ```
-pip3 install git+https://github.com/konono/workday-calc
+pip3 install https://github.com/konono/workday-calc
 ```
 
 ## 使い方
