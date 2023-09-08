@@ -12,7 +12,7 @@ pip3 install https://github.com/konono/workday-calc
 ```
 
 ## 使い方
---start(-s): 開始日時を入力します
+--start(-s): 開始日時を入力します(オプションです、入力をしなかった場合今の日付が入力されます)
 
 --end(-e): 終了日時を入力します
 

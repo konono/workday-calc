@@ -14,7 +14,7 @@ def parser():
     argparser = ArgumentParser(usage=usage)
     date_group = argparser.add_argument_group("date")
     date_group.add_argument('--start', '-s', type=str,
-                            dest='start_date', required=True)
+                            dest='start_date',default=arrow.now(), required=False)
     date_group.add_argument('--end', '-e', type=str,
                             dest='end_date', required=True)
     date_group.add_argument('--holidays', nargs="*", type=str, default=False, required=False,
@@ -29,7 +29,10 @@ def parser():
 
 
 def workdays_calc(args):
-    start_date = arrow.get(args.start_date)
+    if isinstance(args.start_date, arrow.arrow.Arrow):
+        start_date = args.start_date
+    else:
+        start_date = arrow.get(args.start_date)
     end_date = arrow.get(args.end_date)
     print(f'start_date: {start_date.format("YYYY/MM/DD")}')
     print(f'end_date: {end_date.format("YYYY/MM/DD")}')
