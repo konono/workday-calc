@@ -19,9 +19,8 @@ def parser():
                             dest='end_date', required=True)
     date_group.add_argument('--holidays', nargs="*", type=str, default=False, required=False,
                             help='A list of date format, space delimiter')
-    argparser.add_argument('--without_workday', '-w', action='store_true', required=False,
-                           help='To calculate the number of days without considering working days,\
-                                 specify the WITHOUT_WORKDAY option.')
+    argparser.add_argument('--with-holiday', '-w',dest='with_holiday', action='store_true', required=False,
+                           help='To calculate the number of days with holiday.')
     argparser.add_argument('--debug', action='store_true', required=False,
                            help='debug option')
     args = argparser.parse_args()
@@ -36,7 +35,7 @@ def workdays_calc(args):
     end_date = arrow.get(args.end_date)
     print(f'start_date: {start_date.format("YYYY/MM/DD")}')
     print(f'end_date: {end_date.format("YYYY/MM/DD")}')
-    if args.without_workday:
+    if args.with_holiday:
         print(f'days: {(end_date - start_date).days + 1} days')
     else:
         jphd = jpholiday.between(start_date.datetime, end_date.datetime)

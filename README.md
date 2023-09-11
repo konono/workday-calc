@@ -22,7 +22,7 @@ dateの入力については以下のフォーマットが許容されていま�
 
 YYYY-MM-DD, YYYY-M-DD, YYYY-M-D, YYYY/MM/DD, YYYY/M/DD,YYYY/M/D, YYYY.MM.DD, YYYY.M.DD, YYYY.M.D, YYYYMMDD
 
---without_workday(-w): **土日、祝日を加味しない開始日を含む、開始日から終了日までの日数**を計算します。
+--with-holiday(-w): **土日、祝日を加味しない開始日を含む、開始日から終了日までの日数**を計算します。
 
 --debug: 与えられた期間にある祝日を表示します
 
@@ -34,9 +34,8 @@ YYYY-MM-DD, YYYY-M-DD, YYYY-M-D, YYYY/MM/DD, YYYY/M/DD,YYYY/M/D, YYYY.MM.DD, YYY
 
 options:
   -h, --help            show this help message and exit
-  --without_workday, -w
-                        To calculate the number of days without considering working days, specify the
-                        WITHOUT_WORKDAY option.
+  --with-holiday, -w
+                        To calculate the number of days with holiday.
   --debug               debug option
 
 date:
